@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Employee</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="main-header row">
+        <div class="col-md-6">
+            <h2 class="title">Details Employee</h2>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="/employees/create" class="btn btn-primary">Create New Employee</a>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Employee Name: </label>
+        <br>
+        <td readonly="readonly" th:text="${details.name}"></td>
+        <br>
+        <br>
+        <label>Gender: </label>
+        <br>
+        <td readonly="readonly" th:text="${details.gender}"></td>
+        <br>
+        <br>
+        <label>Birth Day: </label>
+        <br>
+        <td readonly="readonly" th:text="${details.birthDay}"></td>
+        <br>
+        <br>
+        <label>Phone Number: </label>
+        <br>
+        <td readonly="readonly" th:text="${details.phone}"></td>
+        <br>
+        <br>
+        <label>ID Card: </label>
+        <br>
+        <td readonly="readonly" th:text="${details.idCard}"></td>
+        <br>
+        <br>
+        <label>Email: </label>
+        <br>
+        <td readonly="readonly" th:text="${details.email}"></td>
+        <br>
+        <br>
+        <label>Address: </label>
+        <textarea readonly th:text="${details.address}" class="form-control" rows="10"></textarea>
+    </div>
+</section>

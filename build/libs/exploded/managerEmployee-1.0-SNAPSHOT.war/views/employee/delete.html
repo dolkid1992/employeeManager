@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Employee</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3>Are you sure want to delete this Employee?</h3>
+        <form method="post" th:action="@{/employees/__${employee.id}__/delete}" th:object="${employee}">
+            <label>Group: <span th:text="${employee.name}"></span></label><br>
+            <label>Gender: <span th:text="${employee.gender}"></span></label><br>
+            <label>Phone: <span th:text="${employee.phone}"></span></label><br>
+            <button class="btn btn-primary" type="submit">Delete Employee</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

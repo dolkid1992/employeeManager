@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+</head>
+<body>
+
+<section layout:fragment="content">
+    <div class="main-header">
+        <h2 class="title">Edit Employee</h2>
+    </div>
+    <th:block th:if="${message}">
+        <div th:text="${message}" class="alert alert-success" role="alert">
+        </div>
+    </th:block>
+    <form th:object="${employee}" method="post">
+        <div class="form-group">
+            <input type="hidden" th:field="*{id}">
+            <label>Employee Name: </label>
+            <input th:field="*{name}" type="text" class="form-control" />
+            <br>
+            <label>Gender: </label>
+            <input th:field="*{gender}" type="text" class="form-control" />
+            <br>
+            <label>Birth Day: </label>
+            <input th:field="*{birthDay}" type="text" class="form-control" />
+            <br>
+            <label>Phone Number: </label>
+            <input th:field="*{phone}" type="text" class="form-control" />
+            <br>
+            <label>ID Card: </label>
+            <input th:field="*{idCard}" type="text" class="form-control" />
+            <br>
+            <label>Email: </label>
+            <input th:field="*{email}" type="text" class="form-control" />
+            <br>
+            <label>Address: </label>
+            <textarea th:field="*{address}" class="form-control" rows="10"></textarea>
+            <br>
+            <button class="btn btn-primary">Update Employee</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>
