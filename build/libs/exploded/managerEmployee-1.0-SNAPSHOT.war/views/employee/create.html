@@ -20,6 +20,13 @@
             <label>Employee Name: </label>
             <input th:field="*{name}" type="text" class="form-control" />
             <br>
+            <label>Group: </label>
+           <select class="form-control" th:field="*{group}">
+               <option th:each="g:${groups}"
+                       th:value="${g.id}"
+                       th:text="${g.name}"></option>
+           </select>
+            <br>
             <label>Gender: </label>
             <input th:field="*{gender}" type="text" class="form-control" />
             <br>

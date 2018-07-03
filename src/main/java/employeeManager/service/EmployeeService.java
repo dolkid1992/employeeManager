@@ -12,4 +12,6 @@ public interface EmployeeService {
     void save(Employee employee);
 
     void delete(Long id);
+
+    Page<Employee> findAllByNameContains(String name, Pageable pageable);
 }

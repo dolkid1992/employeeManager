@@ -1,13 +1,17 @@
 package employeeManager.controller;
 
 import employeeManager.model.Employee;
+import employeeManager.model.Group;
 import employeeManager.service.EmployeeService;
+import employeeManager.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/employees")
@@ -16,10 +20,23 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private GroupService groupService;
+
+    @ModelAttribute("groups")
+    public Iterable<Group> groups(){
+        return groupService.findAll();
+    }
+
     @GetMapping("")
-    public ModelAndView getAllEmployee(Pageable pageable){
+    public ModelAndView getAllEmployee(@RequestParam("s")Optional<String>s, Pageable pageable){
         ModelAndView modelAndView = new ModelAndView("/employee/list");
-        Page<Employee> employees = employeeService.findAll(pageable);
+        Page<Employee> employees;
+        if (s.isPresent()) {
+            employees = employeeService.findAllByNameContains(s.get(), pageable);
+        }else {
+            employees = employeeService.findAll(pageable);
+        }
         modelAndView.addObject("employees", employees);
         return modelAndView;
     }

@@ -1,6 +1,7 @@
 package employeeManager.service.impl;
 
 import employeeManager.model.Group;
+import employeeManager.repository.GroupRepository;
 import employeeManager.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,25 +12,25 @@ import org.springframework.stereotype.Service;
 public class GroupServiceImpl implements GroupService {
 
     @Autowired
-    private GroupService groupService;
+    private GroupRepository groupRepository;
 
     @Override
-    public Page<Group> findAll(Pageable pageable) {
-        return null;
+    public Iterable<Group> findAll() {
+        return groupRepository.findAll();
     }
 
     @Override
     public Group findById(Long id) {
-        return null;
+        return groupRepository.findOne(id);
     }
 
     @Override
     public void save(Group group) {
-
+        groupRepository.save(group);
     }
 
     @Override
     public void delete(Long id) {
-
+        groupRepository.delete(id);
     }
 }

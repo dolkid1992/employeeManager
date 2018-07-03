@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -23,7 +20,7 @@ public class GroupController {
     @GetMapping("")
     public ModelAndView getAllGroup(Pageable pageable){
         ModelAndView modelAndView = new ModelAndView("/group/list");
-        Page<Group> groups = groupService.findAll(pageable);
+        Iterable<Group> groups = groupService.findAll();
         modelAndView.addObject("groups", groups);
         return modelAndView;
     }
@@ -44,49 +41,49 @@ public class GroupController {
         return modelAndView;
     }
 
-//    @GetMapping("/{id}/edit")
-//    public ModelAndView showEditForm(@PathVariable Long id) {
-//        Employee employee = employeeService.findById(id);
-//        if (employee != null) {
-//            ModelAndView modelAndView = new ModelAndView("/employee/edit");
-//            modelAndView.addObject("employee", employee);
-//            return modelAndView;
-//        }else {
-//            ModelAndView modelAndView = new ModelAndView("/error.404");
-//            return modelAndView;
-//        }
-//    }
-//
-//    @PostMapping("/{id}/edit")
-//    public ModelAndView updateEmployee(@ModelAttribute("employee") Employee employee) {
-//        employeeService.save(employee);
-//        ModelAndView modelAndView = new ModelAndView("/employee/edit");
-//        modelAndView.addObject("employee", employee);
-//        modelAndView.addObject("message", "Employee has update successfully");
-//        return modelAndView;
-//    }
-//
-//    @GetMapping("/{id}/delete")
-//    public ModelAndView showDeleteForm(@PathVariable Long id) {
-//        Employee employee = employeeService.findById(id);
-//        if (employee != null) {
-//            ModelAndView modelAndView = new ModelAndView("/employee/delete");
-//            modelAndView.addObject("employee", employee);
-//            return modelAndView;
-//        } else {
-//            ModelAndView modelAndView = new ModelAndView("/error.404");
-//            return modelAndView;
-//        }
-//    }
-//
-//    @PostMapping("/{id}/delete")
-//    public ModelAndView deleteEmployee(@PathVariable("id") Long id) {
-//        Employee employee = employeeService.findById(id);
-//        ModelAndView modelAndView = new ModelAndView();
-//        if (employee != null) {
-//            employeeService.delete(id);
-//        }
-//        modelAndView.setViewName("redirect:/employees");
-//        return modelAndView;
-//    }
+    @GetMapping("/{id}/edit")
+    public ModelAndView showEditForm(@PathVariable Long id) {
+        Group group = groupService.findById(id);
+        if (group != null) {
+            ModelAndView modelAndView = new ModelAndView("/group/edit");
+            modelAndView.addObject("group", group);
+            return modelAndView;
+        }else {
+            ModelAndView modelAndView = new ModelAndView("/error.404");
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/{id}/edit")
+    public ModelAndView updateGroup(@ModelAttribute("group") Group group) {
+        groupService.save(group);
+        ModelAndView modelAndView = new ModelAndView("/group/edit");
+        modelAndView.addObject("group", group);
+        modelAndView.addObject("message", "Group has update successfully");
+        return modelAndView;
+    }
+
+    @GetMapping("/{id}/delete")
+    public ModelAndView showDeleteForm(@PathVariable Long id) {
+        Group group = groupService.findById(id);
+        if (group != null) {
+            ModelAndView modelAndView = new ModelAndView("/group/delete");
+            modelAndView.addObject("group", group);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/error.404");
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/{id}/delete")
+    public ModelAndView deleteGroup(@PathVariable("id") Long id) {
+        Group group = groupService.findById(id);
+        ModelAndView modelAndView = new ModelAndView();
+        if (group != null) {
+            groupService.delete(id);
+        }
+        modelAndView.setViewName("redirect:/groups");
+        return modelAndView;
+    }
 }

@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface GroupService {
-    Page<Group> findAll(Pageable pageable);
+    Iterable<Group> findAll();
 
     Group findById(Long id);
 

@@ -1,5 +1,7 @@
 package employeeManager.config;
 
+import employeeManager.formatter.GroupFormatter;
+import employeeManager.service.GroupService;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -150,9 +153,9 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
 //        return messageSource;
 //    }
 
-//    @Override
-//    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new CategoryFormatter(applicationContext.getBean(CategoryService.class)));
-//    }
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new GroupFormatter(applicationContext.getBean(GroupService.class)));
+    }
 
 }

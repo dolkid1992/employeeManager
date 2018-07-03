@@ -26,7 +26,7 @@ public class Employee {
 
     public Employee(){}
 
-    public Employee(String name, String gender, LocalDate birthDay, String phone, String idCard, String email, String address) {
+    public Employee(String name, String gender, LocalDate birthDay, String phone, String idCard, String email, String address, Group group) {
         this.name = name;
         this.gender = gender;
         this.birthDay = birthDay;
@@ -34,6 +34,15 @@ public class Employee {
         this.idCard = idCard;
         this.email = email;
         this.address = address;
+        this.group = group;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public long getId() {

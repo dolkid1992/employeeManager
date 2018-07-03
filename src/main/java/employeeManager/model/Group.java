@@ -16,6 +16,14 @@ public class Group {
     @OneToMany(targetEntity = Employee.class)
     private List<Employee> employees;
 
+    public Group() {
+    }
+
+    public Group(String name, String content) {
+        this.name = name;
+        this.content = content;
+    }
+
     public Long getId() {
         return id;
     }

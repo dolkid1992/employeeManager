@@ -8,6 +8,13 @@
 </head>
 <body>
 <section layout:fragment="content">
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" th:type="search" placeholder="Search Find By Name" aria-label="Search" name="s" type="text"/>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <br/>
+
     <div class="main-header row">
         <div class="col-md-6">
             <h2 class="title">List Employee</h2>
@@ -22,6 +29,7 @@
             <th>Employee Name</th>
             <th>Gender</th>
             <th>Phone</th>
+            <th>Group</th>
             <th>Details</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -31,6 +39,7 @@
             <td th:text="${employee.name}"></td>
             <td th:text="${employee.gender}"></td>
             <td th:text="${employee.phone}"></td>
+            <td th:text="${employee.group.name}"></td>
             <td><a th:href="@{/employees/__${employee.id}__/details}">Details</a></td>
             <td><a th:href="@{/employees/__${employee.id}__/edit}">Edit</a></td>
             <td><a th:href="@{/employees/__${employee.id}__/delete}">Delete</a></td>

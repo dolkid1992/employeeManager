@@ -34,4 +34,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.delete(id);
     }
 
+    @Override
+    public Page<Employee> findAllByNameContains(String name, Pageable pageable) {
+        return employeeRepository.findAllByNameContains(name, pageable);
+    }
 }
